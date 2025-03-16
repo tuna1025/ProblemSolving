@@ -19,31 +19,32 @@ public class Main {
     static Node tree[]; // 전체 트리를 저장할 배열
 
     // 전위 순회: 부모 -> 왼쪽 -> 오른쪽
-    public static void preorder(Node root) {
+    public static void preorder(Node root,StringBuilder sb) {
         if (root == null) return; // 노드가 null이면 종료
-        System.out.print(root.value); // 현재 노드 값 출력
-        preorder(root.left); // 왼쪽 자식 노드 방문
-        preorder(root.right); // 오른쪽 자식 노드 방문
+        sb.append(root.value); // 현재 노드 값 출력
+        preorder(root.left,sb); // 왼쪽 자식 노드 방문
+        preorder(root.right,sb); // 오른쪽 자식 노드 방문
     }
 
     // 중위 순회: 왼쪽 -> 부모 -> 오른쪽
-    public static void inorder(Node root) {
+    public static void inorder(Node root,StringBuilder sb) {
         if (root == null) return; // 노드가 null이면 종료
-        inorder(root.left); // 왼쪽 자식 노드 방문
-        System.out.print(root.value); // 현재 노드 값 출력
-        inorder(root.right); // 오른쪽 자식 노드 방문
+        inorder(root.left,sb); // 왼쪽 자식 노드 방문
+        sb.append(root.value); // 현재 노드 값 출력
+        inorder(root.right,sb); // 오른쪽 자식 노드 방문
     }
 
     // 후위 순회: 왼쪽 -> 오른쪽 -> 부모
-    public static void postorder(Node root) {
+    public static void postorder(Node root,StringBuilder sb) {
         if (root == null) return; // 노드가 null이면 종료
-        postorder(root.left); // 왼쪽 자식 노드 방문
-        postorder(root.right); // 오른쪽 자식 노드 방문
-        System.out.print(root.value); // 현재 노드 값 출력
+        postorder(root.left,sb); // 왼쪽 자식 노드 방문
+        postorder(root.right,sb); // 오른쪽 자식 노드 방문
+        sb.append(root.value); // 현재 노드 값 출력
     }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
         int N = Integer.parseInt(br.readLine()); // 노드의 개수 입력 받기
         tree = new Node[N + 1]; // 트리를 노드 개수 크기로 초기화
 
@@ -70,11 +71,12 @@ public class Main {
         }
 
         // 트리 순회 결과 출력
-        preorder(tree[0]); // 전위 순회 결과 출력
-        System.out.println();
-        inorder(tree[0]);  // 중위 순회 결과 출력
-        System.out.println();
-        postorder(tree[0]); // 후위 순회 결과 출력
+        preorder(tree[0],sb); // 전위 순회 결과 출력
+        sb.append("\n");
+        inorder(tree[0],sb);  // 중위 순회 결과 출력
+        sb.append("\n");
+        postorder(tree[0],sb); // 후위 순회 결과 출력
+        System.out.println(sb);
         br.close();
     }
 }
