@@ -11,6 +11,7 @@ public class Main {
         K = Integer.parseInt(st.nextToken()); // 잡아야하는 동생 위치
 
         System.out.println(bfs(N));
+        br.close();
     }
 
     static int bfs(int i) {
@@ -30,8 +31,9 @@ public class Main {
                 map[position*2] = map[position];
             }// 이전 위치의 누적시간 그대로
 
-            // 뒤로 한칸 이동 시 1초 추가, 이게 두번쨰로 와야됨, 솔직히 정확히는 모르겠는데 
-            // 뒤로 순간이동이 없어서 이게 먼저 우선순위에 가야할 느낌?
+            // 뒤로 한칸 이동 시 1초 추가, 이게 두번쨰로 와야됨, 
+            // 더하는 경우가 앞에 오면 더 짧은 거리라도 visited로 차단 당해 버림
+            // 더 짧아지는 경우 q.add에 들어가게 만들면 덧셈이 앞에 가도 되긴 할듯? 아님 다익스트라로 하던지
             if(position - 1>= 0 && !visited[position - 1]) {
                 q.add(position - 1);
                 visited[position - 1] = true;
