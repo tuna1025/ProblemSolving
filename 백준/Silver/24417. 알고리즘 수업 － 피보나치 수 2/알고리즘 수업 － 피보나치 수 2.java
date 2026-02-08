@@ -5,9 +5,9 @@ public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        int fir = 1;
-        int sec = 1;
-        int res = 0;
+        long fir = 1;
+        long sec = 1;
+        long res = 0;
         int MOD = 1000000007;
 
         //n 최소값이 5이기 때문에 n=1,2인 경우는 제외
